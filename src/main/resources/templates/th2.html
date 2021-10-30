@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>thymeleaf</title>
+    <link th:href="${versionResourceResolver.getForLookupPath('/assets/css/style.css')}"
+          rel="stylesheet"
+    />
+
+</head>
+<body>
+<div th:object="${product}">
+    <p> name: <span th:text="*{name}"></span></p>
+    <p> color: <span th:text="*{color}"></span></p>
+    <p> price: <span th:text="*{price}"></span></p>
+</div>
+
+<div th:unless="${product.price} > 3000" th:text="비싸다"></div>
+<div th:if="${product.price} > 1500" th:text="적당하다"></div>
+
+</body>
+</html>
