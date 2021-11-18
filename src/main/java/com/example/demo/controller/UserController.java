@@ -1,11 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
+import com.example.demo.model.UserVo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,5 +36,25 @@ public class UserController {
         resultList.put("result", userList);
         return new ResponseEntity(resultList, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/user/regist", method = RequestMethod.POST)
+    public ResponseEntity<?> registUser(@Validated @RequestBody UserVo uservo) {
+        System.out.println("Controller vo check::" + uservo.toString());
+        return new ResponseEntity(null, HttpStatus.OK);
+    }
+
+    @RequestMapping("regist")
+    public ResponseEntity<?> registerUser(@Validated @RequestBody UserVo userVo) {
+        System.out.println("Controller vo check::" + userVo.toString());
+        return new ResponseEntity(null, HttpStatus.OK);
+    }
+
+    @RequestMapping("/{username}")
+    public ResponseEntity<?> findByUserOne(@PathVariable("username") String userName){
+
+        UserVo user = userService.
+
+    }
+
 
 }
