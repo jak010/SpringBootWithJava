@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: 'jdbc:mysql://localhost:3306/employees?useSSL=false'
+    username: root
+    password: '1234'
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    defer-datasource-initialization: 'true'
+    database: mysql
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: 'true'
+  jackson:
+    serialization:
+      fail-on-empty-beans: 'false'
+  output:
+    ansi:
+      enabled: always
+  devtools:
+    remote:
+      restart:
+        enabled: true
+
+logging:
+  exception-conversion-word: '%wEx'
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN:-%5p}){green} %clr([%22thread]){magenta} %clr(%-40.40logger{39}){cyan} %clr(: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}){faint}'
+  level:
+    web: debug
+
+
+
