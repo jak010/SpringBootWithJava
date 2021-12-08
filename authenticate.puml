@@ -1,0 +1,42 @@
+@startuml
+class com.example.demo.DemoApplication {
++ {static} void main(String[])
+}
+class com.example.demo.controller.BasicController {
+~ JwtManager jwtManager
++ String getToken()
++ String except01()
+}
+class com.example.demo.Authenticate.ClaimManger {
+- Claims claim
++ Claims emitClaim(String)
+- Date claimIssuedAtCurrentTime()
+- Date claimExpiredAt(Date)
+}
+class com.example.demo.InterCeptor.ConnectInterceptor {
+~ JwtManager jwtManager
++ boolean preHandle(HttpServletRequest,HttpServletResponse,Object)
++ void postHandle(HttpServletRequest,HttpServletResponse,Object,ModelAndView)
++ void afterCompletion(HttpServletRequest,HttpServletResponse,Object,Exception)
+}
+class com.example.demo.Config.ConnectionConfigure {
+~ ConnectInterceptor connectInterceptor
++ void addInterceptors(InterceptorRegistry)
+}
+class com.example.demo.Authenticate.JwtManager {
+- SecretKey key
+- JSONObject token
+- ClaimManger claimManger
++ String publish()
++ Claims verify(String)
+- String createToken()
+- void setToken(String,String)
+- Claims receiveClaimByManger()
+}
+
+
+org.springframework.web.servlet.HandlerInterceptor <|.. com.example.demo.InterCeptor.ConnectInterceptor
+org.springframework.web.servlet.config.annotation.WebMvcConfigurer <|.. com.example.demo.Config.ConnectionConfigure
+
+com.example.demo.Authenticate.ClaimManger *-- com.example.demo.Authenticate.JwtManager
+@enduml
