@@ -14,11 +14,11 @@ import java.util.Date;
 @Component
 public class JwtManager {
 
-    private SecretKey key = Keys.hmacShaKeyFor("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    private final SecretKey key = Keys.hmacShaKeyFor("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
             .getBytes(StandardCharsets.UTF_8)); // Signature
 
-    private JSONObject token = new JSONObject();
-    private ClaimManger claimManger = new ClaimManger();
+    private final JSONObject token = new JSONObject();
+    private final ClaimManger claimManger = new ClaimManger();
 
 
     /**
@@ -44,7 +44,6 @@ public class JwtManager {
 
     /**
      * JWT 생성하는 메서드. <br/>
-     * - TEST 를 위해 Claim 정보는 토큰 생성 시점에 임의로 넣어줍니다 <br/>
      */
     private String createToken() {
         return Jwts.builder()

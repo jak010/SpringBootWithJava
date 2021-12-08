@@ -16,6 +16,8 @@ public class ConnectionConfigure implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(connectInterceptor);
+        registry.addInterceptor(connectInterceptor)
+                .addPathPatterns("/*")
+                .excludePathPatterns("/token"); // "/token" 요청만 허용해줌
     }
 }

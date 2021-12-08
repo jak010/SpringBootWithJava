@@ -12,14 +12,15 @@ public class BasicController {
     @Autowired
     JwtManager jwtManager;
 
-    @GetMapping("/")
-    public String example() {
-        return "Hello World";
-    }
-
     @GetMapping("/token")
     public String getToken() {
         return jwtManager.publish();
     }
+
+    @GetMapping("/except")
+    public String except01() {
+        return "이 호출은  JWT 검증을 통해서만 호출이 되어야함";
+    }
+
 }
 

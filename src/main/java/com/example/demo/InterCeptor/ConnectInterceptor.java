@@ -30,9 +30,10 @@ public class ConnectInterceptor implements HandlerInterceptor {
 
         if (request.getHeader("x-access-token") != null) {
             System.out.println(jwtManager.verify(request.getHeader("x-access-token")));
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     @Override
